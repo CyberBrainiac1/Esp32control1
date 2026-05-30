@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#101114" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ESP32 Control" />
+    <meta
+      name="description"
+      content="Homescreen-ready ESP32 servo control with one-tap Wi-Fi access point control and optional Web Bluetooth."
+    />
+    <title>ESP32 Control</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="backdrop backdrop-one"></div>
+    <div class="backdrop backdrop-two"></div>
+
+    <main class="shell">
+      <section class="hero card">
+        <p class="eyebrow">ESP32 Remote</p>
+        <h1>ESP32 Control</h1>
+        <p class="subtitle">
+          Open <strong>cyberbrainiac1.github.io/Esp32control1</strong>, tap one button,
+          and control your ESP32 by Wi-Fi hotspot or Bluetooth when your browser supports it.
+        </p>
+
+        <div class="install-note">
+          <span class="pill">iPhone Home Screen</span>
+          <span class="pill">One-tap Wi-Fi</span>
+          <span class="pill">Bluetooth optional</span>
+        </div>
+      </section>
+
+      <section class="card quick-card">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Quick start</p>
+            <h2>Connect without typing an IP</h2>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <button id="auto-connect-button" class="primary-button" type="button">
+            Auto connect to ESP32
+          </button>
+          <button id="bluetooth-button" class="secondary-button" type="button">
+            Connect Bluetooth
+          </button>
+          <button id="install-button" class="secondary-button" type="button">
+            Make this an iPhone app
+          </button>
+        </div>
+
+        <ol class="setup-list">
+          <li>Upload the included ESP32 sketch.</li>
+          <li>On your iPhone, join Wi-Fi network <strong>ESP32-Control</strong>.</li>
+          <li>Come back here and tap <strong>Auto connect to ESP32</strong>.</li>
+        </ol>
+
+        <div id="install-help" class="help-panel" hidden>
+          <p class="status-title">Add to Home Screen</p>
+          <p class="status-detail wide">
+            On iPhone, Safari does not allow a website to add itself automatically. Tap
+            <strong>Share</strong> → <strong>Add to Home Screen</strong> → <strong>Add</strong>.
+            This button keeps the steps here so it is easy to follow.
+          </p>
+        </div>
+      </section>
+
+      <section class="card connection-card">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Connection</p>
+            <h2>ESP32 Link</h2>
+          </div>
+          <button id="ping-button" class="secondary-button" type="button">
+            Check
+          </button>
+        </div>
+
+        <label class="field">
+          <span>Board URL (advanced, optional)</span>
+          <input
+            id="host-input"
+            type="text"
+            spellcheck="false"
+            autocapitalize="none"
+            autocomplete="off"
+            placeholder="http://192.168.4.1"
+          />
+        </label>
+
+        <div class="preset-row">
+          <button id="ap-button" class="chip-button" type="button">
+            ESP32 hotspot
+          </button>
+          <button id="mdns-button" class="chip-button" type="button">
+            Home Wi‑Fi `.local`
+          </button>
+          <button id="save-button" class="chip-button" type="button">
+            Save
+          </button>
+        </div>
+
+        <div class="status-panel">
+          <div>
+            <p class="status-label">Status</p>
+            <p id="status-title" class="status-title">Not connected yet</p>
+            <p id="status-detail" class="status-detail">
+              Tap Auto connect to try the ESP32 hotspot and local Wi‑Fi addresses.
+            </p>
+          </div>
+          <span id="status-badge" class="status-badge status-idle">Idle</span>
+        </div>
+      </section>
+
+      <section class="card servo-card">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Servo</p>
+            <h2>Angle</h2>
+          </div>
+          <p id="angle-readout" class="angle-readout">90°</p>
+        </div>
+
+        <div class="slider-wrap">
+          <input
+            id="angle-slider"
+            type="range"
+            min="0"
+            max="180"
+            step="1"
+            value="90"
+          />
+          <div class="tick-row">
+            <span>0°</span>
+            <span>90°</span>
+            <span>180°</span>
+          </div>
+        </div>
+
+        <div class="control-row">
+          <button data-step="-15" class="secondary-button step-button" type="button">
+            -15
+          </button>
+          <button id="center-button" class="primary-button" type="button">
+            Center
+          </button>
+          <button data-step="15" class="secondary-button step-button" type="button">
+            +15
+          </button>
+        </div>
+      </section>
+
+      <section class="card footer-card">
+        <p class="footer-line">
+          Wi‑Fi is the best iPhone option: the ESP32 creates hotspot
+          <strong>ESP32-Control</strong> at <strong>http://192.168.4.1</strong>, and the
+          Auto connect button fills that in for you.
+        </p>
+        <p class="footer-line">
+          Bluetooth uses Web Bluetooth, which works in Chrome/Edge on supported devices.
+          Safari on iPhone currently does not expose Web Bluetooth to websites, so use Wi‑Fi there.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
